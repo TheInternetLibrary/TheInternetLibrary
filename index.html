@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free EPUB Downloads</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #506e8e;
+            color: white;
+            padding: 10px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Free EPUB Downloads</h1>
+            <input type="text" id="searchInput" placeholder="Search for pages...">
+        </div>
+    </header>
+    <div class="container">
+        <ul id="searchResults">
+            <!-- Search results will be dynamically populated here -->
+        </ul>
+    </div>
+    <script>
+        const pages = [
+            { title: "Page 1", url: "page1.html" },
+            { title: "Page 2", url: "page2.html" },
+            // Add more pages here
+        ];
+
+        const searchInput = document.getElementById("searchInput");
+        const searchResults = document.getElementById("searchResults");
+
+        searchInput.addEventListener("input", updateSearchResults);
+
+        function updateSearchResults() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const filteredPages = pages.filter(page => page.title.toLowerCase().includes(searchTerm));
+
+            searchResults.innerHTML = "";
+            filteredPages.forEach(page => {
+                const li = document.createElement("li");
+                const link = document.createElement("a");
+                link.href = page.url;
+                link.textContent = page.title;
+                li.appendChild(link);
+                searchResults.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
