@@ -3,66 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free EPUB Downloads</title>
+    <title>Free EPUB Download Website</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
         }
-        header {
-            background-color: #506e8e;
-            color: white;
+        .banner {
+            background-color: #607d8b; /* Blue-grayish color */
             padding: 10px;
+            color: white;
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
-        input[type="text"] {
+        .search-bar {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
+            border-radius: 5px;
         }
-        ul {
+        .search-results {
             list-style-type: none;
             padding: 0;
         }
-        li {
-            margin-bottom: 10px;
+        .search-results li {
+            margin-bottom: 5px;
         }
     </style>
 </head>
 <body>
-    <header>
+    <div class="banner">
         <div class="container">
-            <h1>Free EPUB Downloads</h1>
-            <input type="text" id="searchInput" placeholder="Search for pages...">
+            <h1>Free EPUB Download</h1>
+            <input type="text" class="search-bar" id="searchBar" placeholder="Search...">
         </div>
-    </header>
+    </div>
     <div class="container">
-        <ul id="searchResults">
-            <!-- Search results will be dynamically populated here -->
+        <ul class="search-results" id="searchResults">
+            <!-- Search results will be dynamically added here -->
         </ul>
     </div>
     <script>
         const pages = [
-            { title: "Page 1", url: "page1.html" },
-            { title: "Page 2", url: "page2.html" },
+            { title: "Book 1", url: "book1.html" },
+            { title: "Book 2", url: "book2.html" },
             // Add more pages here
         ];
 
-        const searchInput = document.getElementById("searchInput");
+        const searchBar = document.getElementById("searchBar");
         const searchResults = document.getElementById("searchResults");
 
-        searchInput.addEventListener("input", updateSearchResults);
+        searchBar.addEventListener("input", () => {
+            const query = searchBar.value.toLowerCase();
+            const filteredPages = pages.filter(page => page.title.toLowerCase().includes(query));
 
-        function updateSearchResults() {
-            const searchTerm = searchInput.value.toLowerCase();
-            const filteredPages = pages.filter(page => page.title.toLowerCase().includes(searchTerm));
-
+            // Clear previous results
             searchResults.innerHTML = "";
+
+            // Display search results
             filteredPages.forEach(page => {
                 const li = document.createElement("li");
                 const link = document.createElement("a");
@@ -71,7 +73,7 @@
                 li.appendChild(link);
                 searchResults.appendChild(li);
             });
-        }
+        });
     </script>
 </body>
 </html>
