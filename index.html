@@ -21,36 +21,18 @@
             margin: 0 auto;
             padding: 20px;
         }
-        .search-bar {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .search-results {
-            list-style-type: none;
-            padding: 0;
-        }
-        .search-results li {
-            margin-bottom: 5px;
-        }
+       
     </style>
 </head>
 <body>
     <div class="banner">
         <div class="container">
             <h1>Free EPUB Download</h1>
-            <input type="text" class="search-bar" id="searchBar" placeholder="Search...">
         </div>
     </div>
     <a href="Warriors_ Into the Wild - Erin Hunter.epub" download>
     click here to download the file!
     </a>
-    <div class="container">
-        <ul class="search-results" id="searchResults">
-            <!-- Search results will be dynamically added here -->
-        </ul>
-    </div>
     <script>
         const pages = [
             { title: "Book 1", url: "book1.html" },
@@ -58,26 +40,6 @@
             // Add more pages here
         ];
 
-        const searchBar = document.getElementById("searchBar");
-        const searchResults = document.getElementById("searchResults");
-
-        searchBar.addEventListener("input", () => {
-            const query = searchBar.value.toLowerCase();
-            const filteredPages = pages.filter(page => page.title.toLowerCase().includes(query));
-
-            // Clear previous results
-            searchResults.innerHTML = "";
-
-            // Display search results
-            filteredPages.forEach(page => {
-                const li = document.createElement("li");
-                const link = document.createElement("a");
-                link.href = page.url;
-                link.textContent = page.title;
-                li.appendChild(link);
-                searchResults.appendChild(li);
-            });
-        });
     </script>
 </body>
 </html>
